@@ -1,3 +1,21 @@
 body {
   font-family: sans-serif;
+  padding: 0px;
+  margin: 0px;
+  color: #ffa;
+}
+
+#weather-app {
+  width: 100vw;
+  height: 100vh;
+  background-color: #155083;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-description {
+  margin: 20px 0px;
 }
