@@ -20,9 +20,14 @@ function weatherAppFn() {
       console.log(cordinates);
       return cordinates;
     },
-    showWeather: () => {
+    showWeather: async () => {
       let currentLocation = weatherApp.getCurrentLocation();
-      console.log(currentLocation);
+      let weatherApiEndPoint = await fetch(
+        `https://fcc-weather-api.glitch.me//api/current?lon=:${
+          currentLocation.longitude
+        }&lat=:${currentLocation.latitude}`
+      );
+      console.log(weatherApiEndPoint);
     }
   };
   weatherApp.showWeather();
