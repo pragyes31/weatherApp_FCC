@@ -27,7 +27,9 @@ function weatherAppFn() {
           currentLocation.longitude
         }&lat=:${currentLocation.latitude}`
       );
-      console.log(weatherApiEndPoint);
+      weatherApiEndPoint.then(resp => {
+        console.log(resp);
+      });
     }
   };
   weatherApp.showWeather();
