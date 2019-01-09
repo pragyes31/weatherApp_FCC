@@ -1,35 +1,30 @@
 import "./styles.css";
 
 function weatherAppFn() {
-  const latitude = "";
-  const longitude = "";
+  let latitude = "";
+  let longitude = "";
   const weatherApp = {
     getCurrentLocation: () => {
-      let cordinates = {
-        latitude: "",
-        longitude: ""
-      };
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
-          (cordinates.latitude = position.coords.latitude),
-            (cordinates.longitude = position.coords.longitude);
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          console.log(latitude, longitude, "coords");
         });
       } else {
         throw Error("geolocation api not found");
       }
-      console.log(cordinates);
-      return cordinates;
     },
     showWeather: async () => {
-      let currentLocation = weatherApp.getCurrentLocation();
+      weatherApp.getCurrentLocation();
+      console.log(latitude, longitude);
       let weatherApiEndPoint = await fetch(
-        `https://fcc-weather-api.glitch.me//api/current?lon=:${
-          currentLocation.longitude
-        }&lat=:${currentLocation.latitude}`
+        `https://fcc-weather-api.glitch.me//api/current?lon=193&lat=12`
       );
-      weatherApiEndPoint.then(resp => {
-        console.log(resp);
-      });
+      weatherApiEndPoint.json().then(resp => console.log(resp));
+      // weatherApiEndPoint.then(resp => {
+      //   console.log(resp)
+      // })
     }
   };
   weatherApp.showWeather();
